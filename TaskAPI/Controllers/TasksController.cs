@@ -10,7 +10,7 @@ namespace TaskAPI.Controllers
          [HttpGet]
         public IActionResult tasks()
         {   
-            var tasks = new String[] { "task 1", "task 2", "task 3" };
+            var tasks = new String[] { "task 1", "task 2", "task 3", "task 4" };
             return Ok(tasks);
         }
         [HttpPost]
