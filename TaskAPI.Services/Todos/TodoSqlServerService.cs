@@ -34,5 +34,17 @@ public Todo AddTodo(int authorId, Todo todo) {
 
 
         }
-}
+
+        public void UpdateTodo(Todo todo) {
+            _context.SaveChanges();
+        
+        }
+
+
+        public void DeleteTodo(Todo deletingTodo)
+        {
+            _context.Remove(deletingTodo);
+            _context.SaveChanges();
+        }
+    }
     }
