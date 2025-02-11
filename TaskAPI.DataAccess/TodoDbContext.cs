@@ -20,10 +20,10 @@ namespace TaskAPI.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {   modelBuilder.Entity<Author>().HasData(new Author[] { 
-           new Author { Id = 1, FullName = "John Doe" },
-           new Author { Id = 2, FullName = "Jane Doe" },
-           new Author { Id = 3, FullName = "John Smith" },
-           new Author { Id = 4, FullName = "Jane Smith" }
+           new Author { Id = 1, FullName = "John Doe" ,AddressNo="45",Street=" street 1",City="colombo",JobRole="Developer"},
+           new Author { Id = 2, FullName = "Jane Doe" ,AddressNo="44",Street=" street 2",City="colombo",JobRole="Developer"},
+           new Author { Id = 3, FullName = "John Smith" ,AddressNo="45",Street=" street 3",City="colombo",JobRole= "Developer"},
+           new Author { Id = 4, FullName = "Jane Smith",AddressNo="45",Street=" street 1",City="colombo",JobRole="Developer"},
 
 
 

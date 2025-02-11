@@ -1,6 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TaskAPI.Models;
 using TaskAPI.Services.Authors;
+using TaskAPI.Services.Models;
 
 namespace TaskAPI.Controllers
    
@@ -10,20 +13,25 @@ namespace TaskAPI.Controllers
     public class AuthorsController : ControllerBase
     {   
         private readonly IAuthorRepository _service;
-        public AuthorsController(IAuthorRepository service)
+        private readonly IMapper _mapper;
+        public AuthorsController(IAuthorRepository service,IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
 
         }
 
         [HttpGet]
-        public IActionResult GetAuthors()
+        public ActionResult<ICollection<AuthorDto>> GetAllAuthors([FromQuery] string job, [FromQuery] string search)
         {
-            var authors = _service.GetAllAuthors();
-            return Ok(authors);
+
+            var authors = _service.GetAllAuthors(job, search);
+
+            var mappedAuthors=_mapper.Map<ICollection<AuthorDto>>(authors);
+            return Ok(mappedAuthors);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetAuthor")]
         public IActionResult GetAuthor(int id)
         {
             var author = _service.GetAuthor(id);
@@ -32,7 +40,20 @@ namespace TaskAPI.Controllers
             {
                 return NotFound();
             }
-            return Ok(author);
+            var mappedAuthor = _mapper.Map<AuthorDto>(author);
+            return Ok(mappedAuthor);
+        }
+
+        [HttpPost]
+        public ActionResult<AuthorDto> CreateAuthor(CreateAuthorDto author)
+        {
+
+           var authorEntity = _mapper.Map<Author>(author);
+            var newAuthor = _service.AddAuthor(authorEntity);
+            var authorForReturn = _mapper.Map<AuthorDto>(newAuthor);
+            return CreatedAtRoute("GetAuthor", new { id = authorForReturn.Id }, authorForReturn);
+
+
         }
 
     }

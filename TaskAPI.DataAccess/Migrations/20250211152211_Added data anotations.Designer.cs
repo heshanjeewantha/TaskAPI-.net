@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskAPI.DataAccess;
 
@@ -11,9 +12,11 @@ using TaskAPI.DataAccess;
 namespace TaskAPI.DataAccess.Migrations
 {
     [DbContext(typeof(TodoDbContext))]
-    partial class TodoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250211152211_Added data anotations")]
+    partial class Addeddataanotations
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,11 +48,6 @@ namespace TaskAPI.DataAccess.Migrations
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
 
-                    b.Property<string>("JobRole")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
                     b.Property<string>("Street")
                         .IsRequired()
                         .HasMaxLength(200)
@@ -66,7 +64,6 @@ namespace TaskAPI.DataAccess.Migrations
                             AddressNo = "45",
                             City = "colombo",
                             FullName = "John Doe",
-                            JobRole = "Developer",
                             Street = " street 1"
                         },
                         new
@@ -75,7 +72,6 @@ namespace TaskAPI.DataAccess.Migrations
                             AddressNo = "44",
                             City = "colombo",
                             FullName = "Jane Doe",
-                            JobRole = "Developer",
                             Street = " street 2"
                         },
                         new
@@ -84,7 +80,6 @@ namespace TaskAPI.DataAccess.Migrations
                             AddressNo = "45",
                             City = "colombo",
                             FullName = "John Smith",
-                            JobRole = "Developer",
                             Street = " street 3"
                         },
                         new
@@ -93,7 +88,6 @@ namespace TaskAPI.DataAccess.Migrations
                             AddressNo = "45",
                             City = "colombo",
                             FullName = "Jane Smith",
-                            JobRole = "Developer",
                             Street = " street 1"
                         });
                 });

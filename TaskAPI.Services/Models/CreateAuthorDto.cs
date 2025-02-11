@@ -1,37 +1,32 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TaskAPI.Models;
 
-namespace TaskAPI.Models
+namespace TaskAPI.Services.Models
 {
-    public class Author
+   public class CreateAuthorDto
     {
 
         public int Id { get; set; }
-
-        [Required] //data anotation
-        [MaxLength(250)]
         public string FullName { get; set; }
 
-        [MaxLength(10)]
+     
         public string AddressNo { get; set; }
-        [MaxLength(200)]
+       
         public string Street { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+       
         public string City { get; set; }
 
-        [Required]
-        [MaxLength(50)]
+       
         public String JobRole { get; set; }
 
+        public ICollection<createTodoDto> Todos { get; set; } = new List<createTodoDto>();
 
-        public ICollection<Todo> Todos { get; set; }=new List<Todo>();
-        
+
     }
 }

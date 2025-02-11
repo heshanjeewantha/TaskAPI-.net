@@ -1,4 +1,5 @@
 ﻿using System;
+using TaskAPI.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,8 +10,10 @@ namespace TaskAPI.Services.Todos
 {
     public interface ITodoRepository
     {
-        public List<Todo> AllTodos();
-        public Todo GetTodo(int id);
+        public List<Todo> AllTodos(int authorId);
+        public Todo GetTodo(int authorId, int id);
+
+        public Todo AddTodo(int authorId, Todo todo);
     }
 
 }
